@@ -1,0 +1,77 @@
+{
+  "_meta": {
+    "note": "ILLUSTRATIVE SYNTHETIC clinical guidance for a hackathon POC. Simplified stand-ins for real clinical practice guidelines (ADA, ACC/AHA, Choosing Wisely, drug labeling). NOT medical advice and NOT for clinical use.",
+    "generated_for": "Cotiviti Agentic AI intern challenge - Clinical Decision Support (Treatment axis of TPO)"
+  },
+
+  "care_guidelines": [
+    {"rule_id": "CDS-DM-HBA1C", "condition_prefixes": ["E10", "E11"], "type": "gap",
+     "recommended": {"label": "HbA1c testing every 3-6 months", "cpt": "83036", "lookback_days": 180},
+     "reference": "ADA Standards of Care (illustrative)"},
+    {"rule_id": "CDS-DM-STATIN", "condition_prefixes": ["E10", "E11"], "type": "gap",
+     "recommended": {"label": "Statin therapy for most adults with diabetes", "med": "statin"},
+     "reference": "ADA / ACC lipid guidance (illustrative)"},
+    {"rule_id": "CDS-HTN-BP", "condition_prefixes": ["I10"], "type": "reminder",
+     "recommended": {"label": "Regular blood-pressure monitoring"},
+     "reference": "ACC/AHA hypertension guideline (illustrative)"}
+  ],
+
+  "contraindications": [
+    {"rule_id": "CDS-CI-METFORMIN-CKD", "intervention": "metformin",
+     "condition_prefixes": ["N18.4", "N18.5"], "severity": "high",
+     "detail": "Metformin is contraindicated in advanced CKD (stage 4-5) due to lactic-acidosis risk.",
+     "reference": "Metformin labeling / KDIGO (illustrative)"},
+    {"rule_id": "CDS-CI-NSAID-HF", "intervention": "nsaid",
+     "condition_prefixes": ["I50"], "severity": "high",
+     "detail": "NSAIDs promote fluid retention and are generally avoided in heart failure.",
+     "reference": "ACC/AHA heart-failure guideline (illustrative)"},
+    {"rule_id": "CDS-CI-BB-ASTHMA", "intervention": "beta-blocker",
+     "condition_prefixes": ["J45"], "severity": "moderate",
+     "detail": "Non-selective beta-blockers can provoke bronchospasm in asthma.",
+     "reference": "Pulmonary pharmacology guidance (illustrative)"}
+  ],
+
+  "alignment": [
+    {"rule_id": "CDS-ALIGN-MRI-LBP", "procedure_cpt": "72148",
+     "misaligned_condition_prefixes": ["M54.5"], "severity": "moderate",
+     "detail": "Advanced lumbar imaging is not recommended for acute low back pain without red-flag features.",
+     "reference": "Choosing Wisely / ACP low-back-pain guidance (illustrative)"},
+    {"rule_id": "CDS-ALIGN-INJ-URI", "procedure_cpt": "20610",
+     "misaligned_condition_prefixes": ["J00", "J06"], "severity": "moderate",
+     "detail": "A major-joint injection is not clinically indicated for an upper-respiratory infection.",
+     "reference": "Joint-injection indications (illustrative)"}
+  ],
+
+  "med_intervention_map": {
+    "metformin": "metformin", "lisinopril": "ace", "enalapril": "ace",
+    "ibuprofen": "nsaid", "naproxen": "nsaid",
+    "propranolol": "beta-blocker", "metoprolol": "beta-blocker",
+    "atorvastatin": "statin", "rosuvastatin": "statin"
+  },
+
+  "chronic_reminders": {
+    "E10": "Type 1 diabetes: confirm HbA1c is current and statin status reviewed.",
+    "E11": "Type 2 diabetes: confirm HbA1c is current and statin status reviewed.",
+    "I10": "Hypertension: confirm blood-pressure monitoring is on record.",
+    "I50": "Heart failure: review for guideline-directed medical therapy and avoid NSAIDs."
+  },
+
+  "patient_cases": [
+    {"case_id": "PT-A", "label": "Diabetes with overdue HbA1c",
+     "conditions": ["E11.9"], "current_meds": ["metformin", "statin"],
+     "ordered": [{"type": "procedure", "cpt": "99214", "label": "Established office visit"}],
+     "history": [{"cpt": "83036", "days_ago": 270}]},
+    {"case_id": "PT-B", "label": "Diabetes + advanced CKD, metformin ordered",
+     "conditions": ["E11.9", "N18.4"], "current_meds": [],
+     "ordered": [{"type": "med", "name": "metformin", "label": "Metformin 500 mg"}],
+     "history": [{"cpt": "83036", "days_ago": 60}]},
+    {"case_id": "PT-C", "label": "Hypertension, guideline-aligned therapy",
+     "conditions": ["I10"], "current_meds": [],
+     "ordered": [{"type": "med", "name": "lisinopril", "label": "Lisinopril (ACE inhibitor)"}],
+     "history": []},
+    {"case_id": "PT-D", "label": "Acute low back pain, MRI ordered",
+     "conditions": ["M54.5"], "current_meds": [],
+     "ordered": [{"type": "procedure", "cpt": "72148", "label": "Lumbar MRI"}],
+     "history": []}
+  ]
+}

@@ -1,0 +1,146 @@
+{
+  "_meta": {
+    "note": "Synthetic claims for POC demonstration. No real PHI. Patient/provider identifiers are fabricated.",
+    "scenarios": "Designed to exercise clean approvals, hard denials (unbundling, medical necessity, duplicate), and human-escalation cases (amount anomaly, possible upcoding, high-dollar denial governance override)."
+  },
+
+  "history": [
+    {
+      "claim_id": "CLM-0999",
+      "member_id": "PT-777",
+      "provider_id": "P-500",
+      "npi": "1518291234",
+      "date_of_service": "2026-05-10",
+      "place_of_service": "11",
+      "lines": [
+        {"cpt": "99214", "modifiers": [], "icd10": ["I10"], "units": 1, "billed_amount": 180.0}
+      ],
+      "total_billed": 180.0,
+      "status": "PAID"
+    }
+  ],
+
+  "claims": [
+    {
+      "claim_id": "CLM-1001",
+      "member_id": "PT-101",
+      "provider_id": "P-210",
+      "npi": "1093817465",
+      "date_of_service": "2026-06-03",
+      "place_of_service": "11",
+      "scenario_label": "Clean established-patient visit",
+      "lines": [
+        {"cpt": "99213", "modifiers": [], "icd10": ["E11.9"], "units": 1, "billed_amount": 118.0},
+        {"cpt": "36415", "modifiers": [], "icd10": ["E11.9"], "units": 1, "billed_amount": 12.0},
+        {"cpt": "85025", "modifiers": [], "icd10": ["E11.9"], "units": 1, "billed_amount": 20.0}
+      ],
+      "total_billed": 150.0
+    },
+    {
+      "claim_id": "CLM-1002",
+      "member_id": "PT-102",
+      "provider_id": "P-211",
+      "npi": "1093817466",
+      "date_of_service": "2026-06-04",
+      "place_of_service": "11",
+      "scenario_label": "Unbundling (NCCI PTP) - component panel billed with comprehensive",
+      "lines": [
+        {"cpt": "80053", "modifiers": [], "icd10": ["E11.9"], "units": 1, "billed_amount": 45.0},
+        {"cpt": "80048", "modifiers": [], "icd10": ["E11.9"], "units": 1, "billed_amount": 25.0}
+      ],
+      "total_billed": 70.0
+    },
+    {
+      "claim_id": "CLM-1003",
+      "member_id": "PT-103",
+      "provider_id": "P-212",
+      "npi": "1093817467",
+      "date_of_service": "2026-06-05",
+      "place_of_service": "11",
+      "scenario_label": "Medical necessity failure - joint injection with unrelated diagnosis",
+      "lines": [
+        {"cpt": "20610", "modifiers": [], "icd10": ["J06.9"], "units": 1, "billed_amount": 130.0}
+      ],
+      "total_billed": 130.0
+    },
+    {
+      "claim_id": "CLM-1004",
+      "member_id": "PT-104",
+      "provider_id": "P-213",
+      "npi": "1093817468",
+      "date_of_service": "2026-06-06",
+      "place_of_service": "11",
+      "scenario_label": "Billed-amount anomaly - routine code billed far above distribution",
+      "lines": [
+        {"cpt": "99213", "modifiers": [], "icd10": ["E11.9"], "units": 1, "billed_amount": 600.0}
+      ],
+      "total_billed": 600.0
+    },
+    {
+      "claim_id": "CLM-1005",
+      "member_id": "PT-777",
+      "provider_id": "P-500",
+      "npi": "1518291234",
+      "date_of_service": "2026-05-10",
+      "place_of_service": "11",
+      "scenario_label": "Duplicate of a previously paid claim (CLM-0999)",
+      "lines": [
+        {"cpt": "99214", "modifiers": [], "icd10": ["I10"], "units": 1, "billed_amount": 180.0}
+      ],
+      "total_billed": 180.0
+    },
+    {
+      "claim_id": "CLM-1006",
+      "member_id": "PT-106",
+      "provider_id": "P-214",
+      "npi": "1093817469",
+      "date_of_service": "2026-06-07",
+      "place_of_service": "11",
+      "scenario_label": "Possible upcoding - high-complexity E/M with routine-exam diagnosis",
+      "lines": [
+        {"cpt": "99215", "modifiers": [], "icd10": ["Z00.00"], "units": 1, "billed_amount": 255.0}
+      ],
+      "total_billed": 255.0
+    },
+    {
+      "claim_id": "CLM-1007",
+      "member_id": "PT-107",
+      "provider_id": "P-215",
+      "npi": "1093817470",
+      "date_of_service": "2026-06-08",
+      "place_of_service": "11",
+      "scenario_label": "NCCI edit present but distinct-service modifier legitimately applied",
+      "lines": [
+        {"cpt": "11055", "modifiers": [], "icd10": ["L84"], "units": 1, "billed_amount": 55.0},
+        {"cpt": "11720", "modifiers": ["59"], "icd10": ["B35.1"], "units": 1, "billed_amount": 60.0}
+      ],
+      "total_billed": 115.0
+    },
+    {
+      "claim_id": "CLM-1008",
+      "member_id": "PT-108",
+      "provider_id": "P-216",
+      "npi": "1093817471",
+      "date_of_service": "2026-06-09",
+      "place_of_service": "11",
+      "scenario_label": "Clean specialist claim - echo supported by cardiac diagnosis",
+      "lines": [
+        {"cpt": "93307", "modifiers": [], "icd10": ["I50.9"], "units": 1, "billed_amount": 300.0}
+      ],
+      "total_billed": 300.0
+    },
+    {
+      "claim_id": "CLM-1009",
+      "member_id": "PT-109",
+      "provider_id": "P-217",
+      "npi": "1093817472",
+      "date_of_service": "2026-06-10",
+      "place_of_service": "11",
+      "scenario_label": "High-dollar medical-necessity denial - governance requires human sign-off",
+      "lines": [
+        {"cpt": "93307", "modifiers": [], "icd10": ["Z00.00"], "units": 1, "billed_amount": 310.0}
+      ],
+      "total_billed": 310.0
+    }
+  ]
+}

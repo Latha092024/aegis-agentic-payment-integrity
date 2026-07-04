@@ -1,0 +1,33 @@
+{
+  "auc": 0.849,
+  "accuracy": 0.843,
+  "n_train": 1200,
+  "n_test": 400,
+  "positive_rate": 0.512,
+  "feature_names": [
+    "total_billed",
+    "n_lines",
+    "n_distinct_cpts",
+    "n_modifiers",
+    "max_amount_z",
+    "mean_amount_z",
+    "has_ncci_pair",
+    "is_high_level_em",
+    "has_high_cost_proc",
+    "billed_per_line",
+    "proc_dx_mismatch"
+  ],
+  "importances": [
+    0.072,
+    0.027,
+    0.003,
+    0.0,
+    0.27,
+    0.038,
+    0.184,
+    0.18,
+    0.0,
+    0.044,
+    0.181
+  ]
+}

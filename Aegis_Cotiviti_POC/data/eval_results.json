@@ -1,0 +1,16 @@
+{
+  "n": 300,
+  "accuracy": 0.877,
+  "precision": 0.829,
+  "recall": 0.929,
+  "fpr": 0.17,
+  "f1": 0.876,
+  "confusion": {
+    "tp": 131,
+    "tn": 132,
+    "fp": 27,
+    "fn": 10
+  },
+  "avg_ms": 3.72,
+  "mode": "demo"
+}

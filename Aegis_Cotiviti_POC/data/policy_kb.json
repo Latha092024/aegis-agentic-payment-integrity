@@ -1,0 +1,90 @@
+{
+  "_meta": {
+    "note": "ILLUSTRATIVE SYNTHETIC RULES for a hackathon POC. These are simplified stand-ins for real payment-integrity edits (NCCI PTP, LCD/NCD medical-necessity policy, plan payment policy). They are NOT production coding logic and must not be used for real adjudication.",
+    "generated_for": "Cotiviti Agentic AI intern challenge - Topic 2 (Agentic decisioning for TPO)"
+  },
+
+  "ncci_edits": [
+    {
+      "rule_id": "NCCI-PTP-0001",
+      "column1": "80053",
+      "column2": "80048",
+      "modifier_bypass_allowed": false,
+      "rationale": "80048 (Basic Metabolic Panel) is a component of 80053 (Comprehensive Metabolic Panel). Reporting both unbundles the panel; only the comprehensive panel is payable.",
+      "reference": "NCCI Procedure-to-Procedure edit (illustrative)"
+    },
+    {
+      "rule_id": "NCCI-PTP-0002",
+      "column1": "11055",
+      "column2": "11720",
+      "modifier_bypass_allowed": true,
+      "rationale": "Edit pair between paring of benign hyperkeratotic lesion (11055) and nail debridement (11720). A distinct-service modifier (59 or X{EPSU}) permits separate payment when the services are performed at distinct anatomic sites and documented.",
+      "reference": "NCCI Procedure-to-Procedure edit (illustrative)"
+    }
+  ],
+
+  "medical_necessity": [
+    {
+      "rule_id": "LCD-MN-2061",
+      "cpt": "20610",
+      "supported_icd10_prefixes": ["M25", "M17", "M16", "M19", "M75", "M77", "M05", "M06"],
+      "rationale": "Arthrocentesis/injection of a major joint (20610) is supported by osteoarthritis, joint effusion, bursitis, or inflammatory arthropathy diagnoses.",
+      "reference": "Local Coverage Determination (illustrative)"
+    },
+    {
+      "rule_id": "LCD-MN-9330",
+      "cpt": "93307",
+      "supported_icd10_prefixes": ["I50", "I25", "I48", "I34", "I35", "I42", "R00", "R01", "R06"],
+      "rationale": "Transthoracic echocardiography (93307) is supported by heart failure, valvular disease, arrhythmia, cardiomyopathy, or cardiac-symptom diagnoses. A routine wellness visit alone does not establish medical necessity.",
+      "reference": "Local Coverage Determination (illustrative)"
+    }
+  ],
+
+  "amount_stats": {
+    "99213": {"mean": 120.0, "std": 25.0, "description": "Established patient office visit, low-moderate complexity"},
+    "99214": {"mean": 180.0, "std": 35.0, "description": "Established patient office visit, moderate complexity"},
+    "99215": {"mean": 250.0, "std": 45.0, "description": "Established patient office visit, high complexity"},
+    "80053": {"mean": 45.0, "std": 10.0, "description": "Comprehensive metabolic panel"},
+    "80048": {"mean": 25.0, "std": 6.0, "description": "Basic metabolic panel"},
+    "20610": {"mean": 130.0, "std": 30.0, "description": "Arthrocentesis, major joint"},
+    "93307": {"mean": 300.0, "std": 60.0, "description": "Echocardiography, transthoracic"},
+    "11720": {"mean": 60.0, "std": 15.0, "description": "Debridement of nails, 1-5"},
+    "11055": {"mean": 55.0, "std": 12.0, "description": "Paring of benign hyperkeratotic lesion"},
+    "36415": {"mean": 12.0, "std": 3.0, "description": "Collection of venous blood by venipuncture"},
+    "85025": {"mean": 20.0, "std": 5.0, "description": "Complete blood count with differential"}
+  },
+
+  "modifier_reference": {
+    "25": "Significant, separately identifiable E/M service by the same physician on the same day of a procedure.",
+    "59": "Distinct Procedural Service - identifies procedures not normally reported together but appropriate under the circumstances.",
+    "XE": "Separate Encounter.",
+    "XS": "Separate Structure/Site.",
+    "XP": "Separate Practitioner.",
+    "XU": "Unusual Non-Overlapping Service."
+  },
+
+  "upcoding_watch": {
+    "high_level_em_codes": ["99215", "99205"],
+    "low_acuity_icd10_prefixes": ["Z00", "Z01", "Z23", "Z02"],
+    "rationale": "A high-complexity E/M code billed with only a routine/low-acuity encounter diagnosis is a possible up-coding signal. It cannot be confirmed from claim data alone and requires medical-record review."
+  },
+
+  "policy_docs": {
+    "unbundling": {
+      "text": "National Correct Coding Initiative Procedure-to-Procedure edits prevent unbundling, where a comprehensive service is fragmented into its component parts to increase reimbursement. When a column-2 code is a component of a column-1 code, the column-2 code is not separately payable unless an approved modifier indicates a distinct service.",
+      "reference": "CMS NCCI Policy Manual (illustrative summary)"
+    },
+    "medical_necessity": {
+      "text": "A service is medically necessary when it is consistent with the diagnosis and accepted standards of care. Coverage determinations link procedure codes to supporting diagnosis codes; a procedure billed without a supporting diagnosis may be denied for lack of medical necessity.",
+      "reference": "Local/National Coverage Determination (illustrative summary)"
+    },
+    "duplicate": {
+      "text": "A duplicate claim reports the same service, for the same member, by the same provider, on the same date of service as a previously adjudicated claim. Duplicates are non-payable to prevent double payment.",
+      "reference": "Plan payment policy (illustrative summary)"
+    },
+    "high_dollar_review": {
+      "text": "Governance policy: any automated denial exceeding the high-dollar threshold, or any decision below the confidence threshold, must be routed to a human reviewer before final disposition. Autonomous agents may recommend but not finalize such actions.",
+      "reference": "AI Governance / human-in-the-loop policy (illustrative)"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+streamlit>=1.30
+pandas>=2.0
+numpy>=1.24
+scikit-learn>=1.3
+joblib>=1.3
+# Only needed to pull the full real CMS dataset (fetch_real_data.py):
+requests>=2.31
+# Only needed for Live (LLM) mode; Demo mode runs without it:
+anthropic>=0.40
+# Optional: dense semantic RAG backend (default RAG uses TF-IDF, no extra install).
+# Enable with AEGIS_RAG_BACKEND=dense after installing:
+# sentence-transformers>=2.2

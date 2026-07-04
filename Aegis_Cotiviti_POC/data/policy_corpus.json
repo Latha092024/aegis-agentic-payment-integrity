@@ -1,0 +1,38 @@
+{
+  "_meta": {
+    "note": "Concise, paraphrased summaries of PUBLIC-DOMAIN US healthcare payment guidance (CMS/NCCI/Medicare). Government works, summarized for a POC retrieval corpus. Not verbatim, not legal guidance.",
+    "purpose": "Broaden the RAG knowledge base beyond the small structured rulebook."
+  },
+  "documents": [
+    {"id": "PUB-NCCI-PTP", "domain": "payment",
+     "text": "National Correct Coding Initiative Procedure-to-Procedure (PTP) edits identify code pairs that should not be reported together for the same patient on the same day. When a column-two code is a component of a column-one code, only the column-one code is payable unless an approved modifier documents a distinct service.",
+     "source": "CMS NCCI Policy Manual (public, summarized)"},
+    {"id": "PUB-NCCI-MUE", "domain": "payment",
+     "text": "Medically Unlikely Edits (MUEs) cap the maximum units of a service one provider would report for a single patient on one day. Claims exceeding the MUE value for a code are denied or require documentation, guarding against unit-based overbilling.",
+     "source": "CMS NCCI MUE guidance (public, summarized)"},
+    {"id": "PUB-LCD-NCD", "domain": "payment",
+     "text": "National and Local Coverage Determinations (NCD/LCD) define when an item or service is reasonable and necessary. Coverage articles link procedure codes to supporting diagnosis codes; a service billed without a supporting diagnosis may be denied for lack of medical necessity.",
+     "source": "CMS Medicare Coverage Database (public, summarized)"},
+    {"id": "PUB-MOD-25", "domain": "payment",
+     "text": "Modifier 25 indicates a significant, separately identifiable evaluation and management service performed by the same provider on the same day as a procedure. It should only be used when the E/M service is above and beyond the usual pre- and post-procedure work.",
+     "source": "CMS modifier guidance (public, summarized)"},
+    {"id": "PUB-MOD-59", "domain": "payment",
+     "text": "Modifier 59 and the more specific X{EPSU} modifiers identify procedures that are distinct or independent from other services on the same day. They may override an NCCI edit only when the services are separate encounters, sites, or organs and are properly documented.",
+     "source": "CMS modifier guidance (public, summarized)"},
+    {"id": "PUB-GLOBAL", "domain": "payment",
+     "text": "The global surgical package bundles the operation plus related pre-operative and post-operative care into a single payment for a defined period. Separately billing routine follow-up visits that fall inside the global period is not payable.",
+     "source": "CMS Global Surgery booklet (public, summarized)"},
+    {"id": "PUB-DUP", "domain": "payment",
+     "text": "Duplicate claims report the same service for the same member by the same provider on the same date as a previously adjudicated claim. Duplicates are non-payable and are a common source of improper payments.",
+     "source": "CMS payment-integrity guidance (public, summarized)"},
+    {"id": "PUB-COB", "domain": "operations",
+     "text": "Coordination of Benefits determines which payer is primary when a member has more than one plan, preventing payment beyond the total allowed amount. Incorrect primary/secondary sequencing is a frequent cause of overpayment recovery.",
+     "source": "CMS Coordination of Benefits guidance (public, summarized)"},
+    {"id": "PUB-TIMELY", "domain": "operations",
+     "text": "Timely filing rules require claims to be submitted within a set period after the date of service. Claims submitted after the filing limit are denied unless a valid exception applies.",
+     "source": "Medicare claims processing guidance (public, summarized)"},
+    {"id": "PUB-DRG", "domain": "payment",
+     "text": "DRG validation reviews inpatient claims to confirm the coded diagnoses and procedures support the assigned Diagnosis-Related Group. Up-coding the DRG to a higher-weighted group without documentation leads to overpayment.",
+     "source": "CMS DRG validation guidance (public, summarized)"}
+  ]
+}
